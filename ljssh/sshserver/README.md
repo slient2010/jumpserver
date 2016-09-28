@@ -7,3 +7,6 @@
 2.根据ljops_server/requirements.txt，安装依赖
 
 （tips：python依赖包导出：pip freeze > requirements.txt）
+
+### 注意：
+本机器需要和其他服务器建立互信（root级别），后续会调用该机器去同其他服务器建立互信。
