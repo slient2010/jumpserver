@@ -12,6 +12,7 @@
     `
     ssh -A -t -p 9022 root@bastion.address
     `
+    
 4.更改跳板机配置，以便维护。
   见各个文件夹下的README.md
 
