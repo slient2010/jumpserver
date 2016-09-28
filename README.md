@@ -1,41 +1,25 @@
-# jumpserver
-# Linux docker box just for use as ssh bastion
+# Docker 机器作为跳板机。
 
-## Usage
 
-Create a `authorized_keys` file with all public keys that can connect to this bastion.
+## 约定： 
+`
+   文件目录为：/opt/apps/bastion
+`
+## 使用方法：    
+1. 创建 `authorized_keys` 文件用来存放登录跳板机用户的公钥，内容格式同RSA公钥。
+2. 运行脚本create_jumpserver.sh来创建docker镜像和对应的机器。
+3. 登录跳板机
+    `
+    ssh -A -t -p 9022 root@bastion.address
+    `
+4.更改跳板机配置，以便维护。
+  见各个文件夹下的README.md
 
-Then run the following command to start the bastion. 
 
-	docker run --name bastion -d --restart=always -v $(pwd)/authorized_keys:/home/dev/.ssh/authorized_keys:ro -p 9022:9022 chentm/bastion
+## 更多信息：
 
-To connect through the bastion
+敬请参考：
 
-	ssh -A -t -p 9022 dev@bastion.address ssh -t whatever@address.to.connect
-
-## Security
-
-The bastion itself do not have firewalls to limit the source connections. You can use the firewall at the host machine or the security group from AWS to limit the connecitons to port 9022. 
-
-Users can do pretty much nothing with the bastion. Only ssh/sshd commands are available.
-
-## For places where Docker Hub is unreachable eg. China
-
-Run the following commands to build the docker image before running `docker run`
-
-	git clone https://github.com/chentmin/bastion.git
-	docker build -t chentm/bastion bastion
-
-It only needs to download ~2MB from Github, although it could be slow to download from China.
-
-## Credits
-
-This bastion is based on [Alpine](https://hub.docker.com/_/alpine/) Version 3.2.
-
-Security harden script is modified based on [this](https://github.com/gliderlabs/docker-alpine/issues/56#issuecomment-125777140)
-
-## For more infomation
-See also:
 http://www.funtoo.org/Welcome
 
 https://github.com/chentmin/bastion
