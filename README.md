@@ -37,4 +37,5 @@ Security harden script is modified based on [this](https://github.com/gliderlabs
 ## For more infomation
 See also:
 http://www.funtoo.org/Welcome
+
 https://github.com/chentmin/bastion
